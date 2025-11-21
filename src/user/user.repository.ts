@@ -14,11 +14,14 @@ export class UserRepository {
   }
 
   async findId(id: string): Promise<User | null> {
-    return this.typeOrmRepository.findOneBy({ id });
+    return this.typeOrmRepository.findOne({ where: { id: id } });
   }
 
   async findEmail(email: string): Promise<User | null> {
-    return this.typeOrmRepository.findOneBy({ email });
+    return this.typeOrmRepository.findOne({
+      where: { email },
+      select: ['id', 'name', 'email', 'password'],
+    });
   }
 
   async create(userData: Partial<User>): Promise<User> {
