@@ -1,9 +1,12 @@
 import { IsEmpty, IsString, Length } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class createQuoteDto {
+  @ApiProperty()
   @IsString({ message: 'Type must string' })
   id: string;
 
+  @ApiProperty()
   @IsString({ message: 'Type must string' })
   @IsEmpty({ message: 'quote must no empty' })
   @Length(1, 100, {
@@ -12,6 +15,7 @@ export class createQuoteDto {
   })
   quote: string;
 
+  @ApiProperty()
   @IsString({ message: 'Type must string' })
   @IsEmpty({ message: 'author must no empty' })
   @Length(1, 20, {
